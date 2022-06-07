@@ -1,0 +1,39 @@
+{
+	"name": "DPC++",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": [
+		// use UID and GID of local user inside the container
+		// see https://www.redhat.com/sysadmin/debug-rootless-podman-mounted-volumes
+		"--userns=keep-id",
+		// allow access to GPU within the container
+		// see https://www.redhat.com/en/blog/how-use-gpus-containers-bare-metal-rhel-8
+		"--security-opt=no-new-privileges",
+		"--cap-drop=ALL",
+		"--security-opt=label=type:nvidia_container_t"
+	],
+	// install vscode extension in a volume
+	// see https://code.visualstudio.com/remote/advancedcontainers/avoid-extension-reinstalls
+	"mounts": [
+		"type=volume,source=vscode-sycl,target=/home/vscode/.vscode-server/extensions"
+	],
+	// path to workspace inside the container
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	// mount the local workspace folder inside the container with Podman's Z option
+	// see https://www.redhat.com/sysadmin/debug-rootless-podman-mounted-volumes
+	"workspaceMount": "type=bind,Z,source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools"
+			]
+		}
+	},
+	// run vscode-server as non-root user
+	"remoteUser": "vscode",
+	"postCreateCommand": "clang++ -v"
+}

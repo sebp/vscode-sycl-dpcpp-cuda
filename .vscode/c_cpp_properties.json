@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/sycl/include"
+            ],
+            "defines": [],
+            "compilerPath": "/opt/sycl/bin/clang",
+            "compilerArgs": ["-fsycl", "-fsycl-targets=nvptx64-nvidia-cuda"],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}

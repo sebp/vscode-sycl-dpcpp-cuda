@@ -1,0 +1,46 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "tasks": [
+        {
+            "label": "Compile active file with DPC++",
+            "type": "cppbuild",
+            "command": "/opt/sycl/bin/clang++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-fsycl",
+                "-fsycl-targets=nvptx64-nvidia-cuda",
+                "-std=c++17",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Execute active file",
+            "type": "shell",
+            "command": "./${fileBasenameNoExtension}",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Compile active file with DPC++"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "version": "2.0.0"
+}
