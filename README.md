@@ -1,6 +1,6 @@
 # VS Code Development Container: SYCL for NVIDIA GPUs via DPC++'s CUDA Backend
 
-[![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/sebp/vscode-sycl-dpcpp-cuda)
+[![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://vscode.git/clone?url=https://github.com/sebp/vscode-sycl-dpcpp-cuda)
 
 This project provides a **development container** for developing applications
 in [SYCL](https://sycl.tech/) for NVIDIA GPUs using the [CUDA](https://developer.nvidia.com/cuda-toolkit)
